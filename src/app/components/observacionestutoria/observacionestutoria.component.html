@@ -1,0 +1,168 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" routerLink="inicio">Centro LEO</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto"></ul>
+      <form class="form-inline my-2 my-lg-0">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                  <a class="nav-link"  (click)="logout()" style="cursor:pointer;" >Cerrar Sesión</a>
+              </li>
+          </ul>
+      </form>
+  </div>
+</nav>
+<div class="row">
+
+        <div class="col-sm-3" id="menu">
+      
+          <img src="/../assets/img/foto.png" class="img-fluid" alt="Responsive image" height="200" style="background: gainsboro; border: none; padding-left: 15%;padding-top: 5%; padding-right: 15%; ">
+          <br/><br/>
+          <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" *ngIf="usuario.tipo_usuario_id===2">
+              <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home"
+                aria-selected="true" (click)="seguimiento()" style="cursor:pointer;" >Seguimiento de Tutoría</a>
+              <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
+                aria-selected="false" (click)="observaciones()" style="cursor:pointer;" >Observaciones de Tutoría</a>
+              <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages"
+                aria-selected="false" (click)="adicionarMateria()" style="cursor:pointer;">Adicionar una Materia</a>
+              <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
+                aria-selected="false" (click)="registrarEstudiante()" style="cursor:pointer;" >Registrar un estudiante</a>
+              <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
+                aria-selected="false" (click)="registrarTutor()" style="cursor:pointer;">Registrar un tutor</a>
+               <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
+                aria-selected="false" (click)="reportes()" style="cursor:pointer;">Reportes</a>
+            </div>
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" *ngIf="usuario.tipo_usuario_id===1">
+                <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home"
+                  aria-selected="true" (click)="seguimiento()" style="cursor:pointer;" >Seguimiento de Tutoría</a>
+                <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
+                  aria-selected="false" (click)="observaciones()" style="cursor:pointer;" >Observaciones de Tutoría</a>
+                <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages"
+                  aria-selected="false" (click)="adicionarMateria()" style="cursor:pointer;">Adicionar una Materia</a>
+                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
+                  aria-selected="false" (click)="registrarEstudiante()" style="cursor:pointer;" >Registrar un estudiante</a>
+            </div> 
+        </div>
+      
+        <div class="col-sm-9" id="cuerpo">
+          <div class="col-sm-9" style="padding: 0%; margin: 0%;">
+            <img src="/../assets/img/library-banner.jpg" height="165" width="1019" />
+          </div>
+          <br/>
+          <form id="observacionForm" (ngSubmit)="addObservacion()">
+              <div class="container">
+                  <div class="col-sm-12">
+                    <h2>Observciones de tutorías</h2>
+                    <h3>Centro LEO</h3>
+                    <br/>
+                    <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <select class="form-control" name="tipoTutoria" [(ngModel)]="observacion.tipoTutoria">
+                          <option>Tipo de Tutoría</option>
+                          <option>Lectura</option>
+                          <option>Escritura</option>
+                          <option>Oralidad</option>
+                        </select>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-sm-6">
+                        <h5>¿Resolví mis inquietudes?</h5>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio1" value="SI" class="custom-control-input" name="inquietudesSolucionadas" [(ngModel)]="observacion.inquietudesSolucionadas">
+                            <label class="custom-control-label" for="customRadio1">Si</label>
+                          </div>
+                          <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio2"  value="NO"  class="custom-control-input" inquietudesSolucionadas name="inquietudesSolucionadas" [(ngModel)]="observacion.inquietudesSolucionadas">
+                            <label class="custom-control-label" for="customRadio2">No</label>
+                          </div>
+                          <div class="custom-control custom-radio">
+                              <input type="radio" id="customRadio3"  value="MAS/MENOS" class="custom-control-input" name="inquietudesSolucionadas" [(ngModel)]="observacion.inquietudesSolucionadas"> 
+                              <label class="custom-control-label" for="customRadio3">Más o menos</label>
+                            </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <h5>¿El tiempo fue suficiente?</h5>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio4" class="custom-control-input" value="SI" name="tiempoSuficiente" [(ngModel)]="observacion.tiempoSuficiente">
+                            <label class="custom-control-label" for="customRadio4">Si</label>
+                          </div>
+                          <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio5" class="custom-control-input" value="NO" name="tiempoSuficiente" [(ngModel)]="observacion.tiempoSuficiente">
+                            <label class="custom-control-label" for="customRadio5">No</label>
+                          </div>
+                          <div class="custom-control custom-radio">
+                              <input type="radio" id="customRadio6"  class="custom-control-input" value="MAS/MENOS" name="tiempoSuficiente" [(ngModel)]="observacion.tiempoSuficiente">
+                              <label class="custom-control-label" for="customRadio6">Más o menos</label>
+                            </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <br/>
+                        <h5>¿Cómo fue el trato del tutor?</h5>
+                        <div class="row">
+                        <div class="col-sm-3">
+                           <p>Debe mejorar</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <ngb-rating [(rate)]="observacion.tratoDelTutor"></ngb-rating>
+                            <pre>Rango: <b>{{observacion.tratoDelTutor}}</b></pre>
+                        </div>
+                        <div class="col-sm-3">
+                            <p>Excelente</p>
+                        </div>              
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <br/>
+                        <h5>¿La tutoría me da herramientas para continuar mejorando por mi cuenta?</h5>
+                        <div class="row">
+                            <div class="col-sm-2">
+                               <p>Pocas</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <ngb-rating [(rate)]="observacion.tutoriaDaHerramientas"></ngb-rating>
+                                <pre>Rango: <b>{{observacion.tutoriaDaHerramientas}}</b></pre>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>Suficientes</p>
+                            </div>              
+                          </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Comentarios" name="comentarios" [(ngModel)]="observacion.comentarios"></textarea>
+                        <br/>
+                    </div>
+                    <div class="col-sm-6 centrar">
+                        <button type="submit" class="btn btn-outline-success boton" >Guardar</button>
+                      </div>        
+                  </div>
+                  <br/>
+                </div>
+              </div>
+          </form>
+      </div>
+      </div>
+      
+      <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-s6">
+              <br/>
+              <img src="/assets/img/logo-icesi.png" />
+              <p>Centro LEO</p>
+              <p>
+                <i class="fas fa-phone"></i>+57 (2) 555 2334 +57 (2) 555 1441
+              </p>
+              <p>Universidad Icesi, Calle 18 No. 122-135 Pance, Cali - Colombia</p>
+              <p>Biblioteca Universidad Icesi - Cali</p>
+              <p>Todos los derechos reservados. Imágenes propiedad de la Universidad Icesi</p>
+            </div>
+          </div>
+        </div>
+      </footer>
